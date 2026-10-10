@@ -101,7 +101,10 @@
   .addtrip { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 4px; border-radius: 12px; color: var(--muted); font-size: 15px; }
   .circle { width: 36px; height: 36px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center; color: var(--ink); font: 700 26px/1 var(--display); }
   .quote { flex: none; position: relative; z-index: 2; padding: 10px 20px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px dashed var(--rule); background: var(--paper); text-align: center; }
-  .quote p { margin: 0; color: var(--muted); font: 400 19px/1.45 var(--display); letter-spacing: .01em; word-break: keep-all; }
+  .quote { --qc: #C2410C; border-top: 2px solid var(--qc); }
+  .quote p { margin: 0; color: var(--qc); font: 700 20px/1.45 var(--display); letter-spacing: .01em; word-break: keep-all; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .quote { --qc: #FF9A5C; } }
+  :root[data-theme="dark"] .quote { --qc: #FF9A5C; }
   .none { margin: 28px 0 0; color: var(--muted); text-align: center; }
 
   /* 앨범 */
@@ -196,6 +199,7 @@
     <div id="rows"></div>
     <button id="addTrip" class="addtrip" type="button"><span class="circle" aria-hidden="true">+</span>여행 추가</button>
     </div>
+    <footer class="quote"><p>세상은 넓고 갈 곳은 많다.<br>오늘 남긴 한 장의 기억이, 내일 떠날 설렘이 되기를.</p></footer>
   </section>
 
   <section id="album" class="screen" aria-label="앨범" hidden>
@@ -217,7 +221,6 @@
     <button id="delDay" class="delday" type="button" hidden>이 일차 삭제</button>
     </div>
   </section>
-  <footer class="quote"><p>세상은 넓고 갈 곳은 많다.<br>오늘 남긴 한 장의 기억이, 내일 떠날 설렘이 되기를.</p></footer>
 </main>
 <div id="dlg" class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgTitle" hidden>
   <div class="card">
@@ -598,7 +601,7 @@
   });
 
   /* ---------- 백업과 복원 (앱을 지우고 다시 설치해도 내용을 되살리기 위함) ---------- */
-  var APP_VERSION = '1.3';
+  var APP_VERSION = '1.4';
   var MIME_EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'video/mp4': 'mp4', 'video/quicktime': 'mov', 'video/webm': 'webm', 'video/x-m4v': 'm4v', 'video/3gpp': '3gp' };
 
   /* zip:start */
